@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	let src = 'https://res.cloudinary.com/demo/image/upload/kitten_fighting.gif';
+	let name = 'white cat grabbing grass';
+</script>
+
+<img {src} alt={name} />
+
+<p>{name}</p>
+
+<style>
+	p {
+		color: #5e1286;
+		background-color: white;
+	}
+</style>
