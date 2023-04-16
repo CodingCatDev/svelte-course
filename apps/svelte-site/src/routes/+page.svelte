@@ -1,15 +1,13 @@
 <script>
-	let src = 'https://res.cloudinary.com/demo/image/upload/kitten_fighting.gif';
-	let name = 'white cat grabbing grass';
+	import Kitten from './Kitten.svelte';
 </script>
 
-<img {src} alt={name} />
+<h1>Hello Kittens</h1>
 
-<p>{name}</p>
+<p>This wild and crazy cats!</p>
 
-<style>
-	p {
-		color: #5e1286;
-		background-color: white;
-	}
-</style>
+<Kitten />
+<Kitten
+	src={'https://media.tenor.com/fTTVgygGDh8AAAAC/kitty-cat-sandwich.gif'}
+	name={'sandwhich cat'}
+/>
