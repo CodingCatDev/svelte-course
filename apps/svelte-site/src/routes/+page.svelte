@@ -1,5 +1,5 @@
 <script>
-	import CatAge from './CatAge.svelte';
+	import KittenPicker from './KittenPicker.svelte';
 </script>
 
-<CatAge />
+<KittenPicker />
