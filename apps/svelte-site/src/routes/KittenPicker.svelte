@@ -23,6 +23,7 @@
 		Kitten B
 	</button>
 	<button
+		on:click
 		on:click={() =>
 			selectKitten('https://30.media.tumblr.com/tumblr_m3d2zsJr9Y1qe9f3eo1_250.jpg', 'Kitten C')}
 	>
@@ -36,4 +37,4 @@
 	</button>
 </div>
 
-<Kitten {src} {name} />
+<Kitten {src} {name} on:message />
