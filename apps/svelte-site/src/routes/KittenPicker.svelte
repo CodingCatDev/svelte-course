@@ -5,7 +5,7 @@
 	export let name = 'white cat grabbing grass';
 
 	const getKittens = async () => {
-		const res = await fetch('https://api.thecatapi.com/v1/images/asearch?limit=10');
+		const res = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
 		const kittenJson = await res.json();
 		return kittenJson.map((k: any) => {
 			return { src: k.url, name: k.id };
