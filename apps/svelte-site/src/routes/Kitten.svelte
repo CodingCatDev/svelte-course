@@ -36,4 +36,7 @@
 		flex-direction: row;
 		gap: 1rem;
 	}
+	img {
+		max-width: 250px;
+	}
 </style>
