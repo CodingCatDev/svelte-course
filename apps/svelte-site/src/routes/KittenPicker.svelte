@@ -17,7 +17,8 @@
 	};
 </script>
 
-<div>
+<h2>Kitten Picker</h2>
+<div class="buttons">
 	{#each kittens as { src, name }, i}
 		<button on:click={() => selectKitten(src, name)}>
 			{i}-{name}
@@ -26,3 +27,14 @@
 </div>
 
 <Kitten {src} {name} />
+
+<style>
+	h2 {
+		color: slategray;
+	}
+	.buttons {
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
+	}
+</style>

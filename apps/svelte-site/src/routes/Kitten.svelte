@@ -3,25 +3,37 @@
 	export let name = 'white cat grabbing grass';
 </script>
 
-<img {src} alt={name} />
+<section>
+	<h2>{name}</h2>
 
-<p>{name}</p>
+	<div class="images">
+		<img {src} alt={name} />
 
-{#if name === 'Kitten B'}
-	<img
-		src="https://media.codingcat.dev/image/upload/q_auto,f_auto,w_250,c_scale/main-codingcatdev-photo/xena-blackcatui.jpg"
-		alt="Xena closing eyes black cat"
-	/>
-{:else if name === 'Kitten C'}
-	<img
-		src="https://media.codingcat.dev/image/upload/q_auto,f_auto,w_250,c_scale,a_180/main-codingcatdev-photo/xena-blackcatui.jpg"
-		alt="Xena upside down"
-	/>
-{/if}
+		{#if name === 'Kitten B'}
+			<img
+				src="https://media.codingcat.dev/image/upload/q_auto,f_auto,w_250,c_scale/main-codingcatdev-photo/xena-blackcatui.jpg"
+				alt="Xena closing eyes black cat"
+			/>
+		{:else if name === 'Kitten C'}
+			<img
+				src="https://media.codingcat.dev/image/upload/q_auto,f_auto,w_250,c_scale,a_180/main-codingcatdev-photo/xena-blackcatui.jpg"
+				alt="Xena upside down"
+			/>
+		{/if}
+	</div>
+</section>
 
 <style>
-	p {
-		color: #5e1286;
-		background-color: white;
+	h2 {
+		color: steelblue;
+	}
+	section {
+		display: flex;
+		flex-direction: column;
+	}
+	.images {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
 	}
 </style>
