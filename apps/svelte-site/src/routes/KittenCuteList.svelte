@@ -25,6 +25,22 @@
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200)
 	});
+
+	import { onMount, beforeUpdate, afterUpdate, onDestroy } from 'svelte';
+
+	onMount(() => {
+		console.log('mounted');
+	});
+
+	beforeUpdate(() => {
+		console.log('beforeUpdate');
+	});
+	afterUpdate(() => {
+		console.log('afterUpdate');
+	});
+	onDestroy(() => {
+		console.log('onDestroy');
+	});
 </script>
 
 <h2>Kitten Cuteness Picker</h2>
