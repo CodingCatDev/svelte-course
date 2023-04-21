@@ -1,4 +1,5 @@
 <script lang="ts">
+	import KittenCuteList from './KittenCuteList.svelte';
 	import KittenPicker from './KittenPicker.svelte';
 </script>
 
@@ -6,7 +7,8 @@
 
 <h2>The Cat Picker App</h2>
 
-<KittenPicker />
+<!-- <KittenPicker /> -->
+<KittenCuteList />
 
 <style>
 	:global(h2) {
