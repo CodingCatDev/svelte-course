@@ -1,31 +1,24 @@
 <script lang="ts">
 	import Kitten from './Kitten.svelte';
+	import { kittensStore, kittenSelected, type KittenType } from './stores';
 
-	export let src = 'https://res.cloudinary.com/demo/image/upload/kitten_fighting.gif';
-	export let name = 'white cat grabbing grass';
-
-	const getKittens = async () => {
-		const res = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
-		const kittenJson = await res.json();
-		return kittenJson.map((k: any) => {
-			return { src: k.url, name: k.id };
+	const selectKitten = (name: string) => {
+		const u = kittensStore.subscribe((kittens) => {
+			const selectedKitten = kittens.filter((kitten) => kitten.name === name)?.at(0);
+			kittenSelected.set(selectedKitten);
 		});
-	};
-
-	const selectKitten = (newSrc: string, newAlt: string) => {
-		src = newSrc;
-		name = newAlt;
+		u();
 	};
 </script>
 
 <h2>Kitten Picker</h2>
 
 <div class="buttons">
-	{#await getKittens()}
+	{#await $kittensStore}
 		Getting Kittens...
 	{:then kittens}
 		{#each kittens as { src, name }}
-			<button on:click={() => selectKitten(src, name)}>
+			<button on:click={() => selectKitten(name)}>
 				{name}
 			</button>
 		{/each}
@@ -36,7 +29,9 @@
 	{/await}
 </div>
 
-<Kitten {src} {name} />
+{#if $kittenSelected}
+	<Kitten src={$kittenSelected.src} name={$kittenSelected.name} />
+{/if}
 
 <style>
 	h2 {

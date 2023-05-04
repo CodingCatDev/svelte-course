@@ -1,25 +1,12 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate';
 	import { crossfade } from 'svelte/transition';
+	import { kittensStore, type KittenType } from './stores';
 
-	interface Kitten {
-		src: string;
-		name: string;
-		supercute: boolean;
-	}
-	let kittens: Kitten[] = [];
-	const getKittens = async (): Promise<Kitten[]> => {
-		const res = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
-		const kittenJson = await res.json();
-		kittens = kittenJson.map((k: any, i: number) => {
-			return { src: k.url, name: k.id, supercute: false };
-		});
-		return kittens;
-	};
-	const toggleSuperCute = (kitten: Kitten) => {
+	const toggleSuperCute = (kitten: KittenType, kittens: KittenType[]) => {
 		const i = kittens.findIndex((k) => k.name === kitten.name);
 		kittens[i].supercute = !kittens[i].supercute;
-		kittens = [...kittens];
+		kittensStore.set([...kittens]);
 	};
 
 	const [send, receive] = crossfade({
@@ -45,16 +32,16 @@
 
 <h2>Kitten Cuteness Picker</h2>
 
-{#await getKittens()}
+{#await $kittensStore}
 	Getting Kittens...
-{:then}
+{:then kittens}
 	<h3>All kittens</h3>
 	<section class="cutekittens">
 		{#each kittens.filter((a) => a.supercute === false) as kitten (kitten.name)}
 			<button
 				class="cutekitten"
 				style={`background-image: url(${kitten.src})`}
-				on:click={() => toggleSuperCute(kitten)}
+				on:click={() => toggleSuperCute(kitten, kittens)}
 				animate:flip
 				in:receive={{ key: kitten.name }}
 				out:send={{ key: kitten.name }}
@@ -68,7 +55,7 @@
 			<button
 				class="cutekitten"
 				style={`background-image: url(${kitten.src})`}
-				on:click={() => toggleSuperCute(kitten)}
+				on:click={() => toggleSuperCute(kitten, kittens)}
 				animate:flip
 				in:receive={{ key: kitten.name }}
 				out:send={{ key: kitten.name }}
