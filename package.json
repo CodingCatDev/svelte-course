@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "startCommand": "cd ./apps/svelte-site/ && pnpm dev"
   },
+  "stackblitz": {
+    "startCommand": "cd ./apps/svelte-site/ && pnpm dev"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
